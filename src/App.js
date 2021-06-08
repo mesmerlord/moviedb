@@ -1,6 +1,6 @@
-import logo from "./logo.svg";
-import "./App.css";
-import Navbar from "./components/Navbar";
+// import logo from "./logo.svg";
+// import "./App.css";
+// import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Searchpage from "./components/Searchpage";

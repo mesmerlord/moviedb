@@ -3,7 +3,6 @@ import Moviecard from "./Moviecard";
 import Navbar from "./Navbar";
 import Grid from "@material-ui/core/Grid";
 import { useEffect } from "react";
-import { spacing } from "@material-ui/system";
 
 const Home = () => {
   const cardItems = [

@@ -6,9 +6,6 @@ import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
 
 import SearchIcon from "@material-ui/icons/Search";
-import HomeIcon from "@material-ui/icons/Home";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import CustomLink from "./CustomLink";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
