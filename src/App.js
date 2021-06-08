@@ -6,27 +6,11 @@ import Home from "./components/Home";
 import Searchpage from "./components/Searchpage";
 import Notfound from "./components/Notfound";
 import Favorites from "./components/Favorites";
-import MobileNav from "./components/MobileNav";
-import { useEffect, useState } from "react";
 
 function App() {
-  const [width, setWidth] = useState(window.innerWidth);
-  function handleWindowSizeChange() {
-    setWidth(window.innerWidth);
-  }
-  useEffect(() => {
-    window.addEventListener("resize", handleWindowSizeChange);
-    return () => {
-      window.removeEventListener("resize", handleWindowSizeChange);
-    };
-  }, []);
-
-  let isMobile = width <= 768;
   return (
     <div className="App">
       <Router>
-        {!isMobile ? <Navbar /> : <MobileNav />}
-
         <Switch>
           <Route exact path="/home" component={Home} />
           <Route path="/search" component={Searchpage} />

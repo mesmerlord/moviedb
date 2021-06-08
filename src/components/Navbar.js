@@ -15,6 +15,8 @@ import HomeIcon from "@material-ui/icons/Home";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import SearchIcon from "@material-ui/icons/Search";
 import CustomLink from "./CustomLink";
+import { useEffect, useState } from "react";
+import MobileNav from "./MobileNav";
 
 const drawerWidth = 240;
 
@@ -44,49 +46,70 @@ const useStyles = makeStyles((theme) => ({
 
 const Navbar = (props) => {
   const classes = useStyles();
+
+  const [width, setWidth] = useState(window.innerWidth);
+
+  let isMobile = width <= 768;
+  function handleWindowSizeChange() {
+    setWidth(window.innerWidth);
+  }
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
   // const menuItems = [
   //   { name: "Home", path: "home", icon: "Home" },
   //   { name: "Search", path: "search", icon: "SearchIcon" },
   //   { name: "Favorites", path: "favorite", icon: "FavoriteIcon" },
   // ];
   return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar></Toolbar>
-      </AppBar>
-      <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-        anchor="left"
-      >
-        <div className={classes.toolbar} />
-        <Divider />
-        <List>
-          <CustomLink
-            icon={<HomeIcon />}
-            to={"/home"}
-            primary="Home"
-          ></CustomLink>
-          <CustomLink
-            icon={<FavoriteIcon />}
-            to={"/favorites"}
-            primary="Favorites"
-          ></CustomLink>
-          <CustomLink
-            icon={<SearchIcon />}
-            to={"/search"}
-            primary="Search"
-          ></CustomLink>
-        </List>
-      </Drawer>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-      </main>
-    </div>
+    <>
+      {isMobile ? (
+        <>
+          <MobileNav />
+          {props.children}
+        </>
+      ) : (
+        <div className={classes.root}>
+          <CssBaseline />
+
+          <Drawer
+            className={classes.drawer}
+            variant="permanent"
+            classes={{
+              paper: classes.drawerPaper,
+            }}
+            anchor="left"
+          >
+            <div className={classes.toolbar} />
+            <Divider />
+            <List>
+              <CustomLink
+                icon={<HomeIcon />}
+                to={"/home"}
+                primary="Home"
+              ></CustomLink>
+              <CustomLink
+                icon={<FavoriteIcon />}
+                to={"/favorites"}
+                primary="Favorites"
+              ></CustomLink>
+              <CustomLink
+                icon={<SearchIcon />}
+                to={"/search"}
+                primary="Search"
+              ></CustomLink>
+            </List>
+          </Drawer>
+          <main className={classes.content}>
+            {/* <div className={classes.toolbar} /> */}
+            {props.children}
+          </main>
+        </div>
+      )}
+    </>
   );
 };
 

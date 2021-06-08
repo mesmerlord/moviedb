@@ -1,21 +1,34 @@
 import React from "react";
 import Moviecard from "./Moviecard";
-import Box from "@material-ui/core/Box";
+import Navbar from "./Navbar";
 import Grid from "@material-ui/core/Grid";
-
+import { useEffect } from "react";
 import { spacing } from "@material-ui/system";
 
 const Home = () => {
+  const cardItems = [
+    { name: "Hello", key: 1 },
+    { name: "hello", key: 2 },
+    { name: "Hello", key: 3 },
+    { name: "Hello", key: 4 },
+    { name: "Hello", key: 5 },
+  ];
+  const items = cardItems.map((item) => {
+    return (
+      <Grid item md={3} xs={5} key={item.key}>
+        <Moviecard title={item.name} />
+      </Grid>
+    );
+  });
+  useEffect(() => {
+    console.log(items);
+  }, []);
   return (
     <>
-      <h1>Home</h1>
-      <Grid container justify="center">
-        <Grid item md={6} xs={6} justify="center">
-          <Box ml={3}>
-            <Moviecard />
-          </Box>
-        </Grid>
-      </Grid>
+      <Navbar>
+        <h1>Home</h1>
+        <Grid container>{items}</Grid>
+      </Navbar>
     </>
   );
 };

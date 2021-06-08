@@ -17,6 +17,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
+    margin: "1em",
   },
   media: {
     height: 0,
@@ -37,7 +38,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RecipeReviewCard() {
+export default function RecipeReviewCard({
+  title,
+  description,
+  imagelink,
+  moretext,
+}) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -47,11 +53,11 @@ export default function RecipeReviewCard() {
 
   return (
     <Card className={classes.root}>
-      <CardHeader title="Sample Title" subheader="September 14, 2016" />
+      <CardHeader title={title} subheader="September 14, 2016" />
       <CardMedia
         className={classes.media}
         image="/static/images/cards/paella.jpg"
-        title="Paella dish"
+        title={title}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
@@ -62,9 +68,7 @@ export default function RecipeReviewCard() {
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
+
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
