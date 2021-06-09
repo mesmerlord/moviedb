@@ -25,7 +25,7 @@ const MovieDetail = () => {
   const getMovie = (id) => {
     setLoading(true);
     const response = axios
-      .get(`http://omdbapi.com/?apikey=57446276&i=${id}`)
+      .get(`https://omdbapi.com/?apikey=57446276&i=${id}`)
       .then((res) => {
         const data = res.data;
         setMovieDetail(data);
