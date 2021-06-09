@@ -25,6 +25,7 @@ const Moviecardlist = ({ movielist, favorites }) => {
               title={item.name}
               imagelink={item.image}
               date={item.year}
+              id={item.id}
             />
           </Grid>
         );

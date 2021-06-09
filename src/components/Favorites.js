@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
+import Helmet from "react-helmet";
 
 import Moviecardlist from "./Moviecardlist";
 import { useEffect, useState } from "react";
@@ -40,6 +41,10 @@ const Favorites = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Favorites - MovieDB</title>
+        <meta name="description" content="Come back to your favorite movies" />
+      </Helmet>
       <Navbar>
         <h1>Favorites</h1>
 

@@ -14,11 +14,16 @@ import MovieDetail from "./components/MovieDetail";
 import Favorites from "./components/Favorites";
 import store from "./redux/configureStore";
 import { Provider } from "react-redux";
+import Helmet from "react-helmet";
 
 function App() {
   return (
     <Provider store={store}>
       <div className="App">
+        <Helmet>
+          <title>MovieDB - Search Movies</title>
+          <meta name="description" content="Go through your favorite movies" />
+        </Helmet>
         <Router>
           <Switch>
             <Route exact path="/">

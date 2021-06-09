@@ -14,6 +14,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { addFavorite } from "../redux/movies/movies";
 import { IconButton } from "@material-ui/core";
 import Tooltip from "@material-ui/core/Tooltip";
+import Helmet from "react-helmet";
 
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -113,6 +114,14 @@ const MovieDetail = () => {
 
   return (
     <>
+      <Helmet>
+        <title>
+          {!movieDetail
+            ? "MovieDB - Loading"
+            : `${movieDetail.Title} - MovieDB`}
+        </title>
+        <meta name="description" content={movieDetail.Plot} />
+      </Helmet>
       <Navbar>
         <Paper>
           {loading ? (
