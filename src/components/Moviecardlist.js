@@ -2,7 +2,7 @@ import React from "react";
 import Moviecard from "./Moviecard";
 import Grid from "@material-ui/core/Grid";
 
-const Moviecardlist = ({ movielist }) => {
+const Moviecardlist = ({ movielist, favorites }) => {
   const listToRender = movielist
     ? movielist.map((item) => {
         return (
@@ -17,7 +17,20 @@ const Moviecardlist = ({ movielist }) => {
         );
       })
     : [];
-  return <> {listToRender} </>;
+  const favoritesList = favorites
+    ? favorites.map((item) => {
+        return (
+          <Grid item md={3} xs={5} key={item.name}>
+            <Moviecard
+              title={item.name}
+              imagelink={item.image}
+              date={item.year}
+            />
+          </Grid>
+        );
+      })
+    : [];
+  return <> {!favorites ? listToRender : favoritesList} </>;
 };
 
 export default Moviecardlist;

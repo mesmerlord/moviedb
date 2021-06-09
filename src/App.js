@@ -1,7 +1,12 @@
 // import logo from "./logo.svg";
 // import "./App.css";
 // import Navbar from "./components/Navbar";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import Home from "./components/Home";
 import Searchpage from "./components/Searchpage";
 import Notfound from "./components/Notfound";
@@ -16,6 +21,9 @@ function App() {
       <div className="App">
         <Router>
           <Switch>
+            <Route exact path="/">
+              <Redirect to="/home" />
+            </Route>
             <Route exact path="/home" component={Home} />
             <Route path="/search" component={Searchpage} />
             <Route path="/favorites" component={Favorites} />

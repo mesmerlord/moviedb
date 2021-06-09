@@ -4,8 +4,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
-
-import SearchIcon from "@material-ui/icons/Search";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -81,19 +80,70 @@ const useStyles = makeStyles((theme) => ({
 
 const MobileNav = (props) => {
   const classes = useStyles();
-
+  const goToLink = (url) => {
+    this.props.history.push(`/${url}`);
+  };
   return (
     <>
       <div className={classes.grow}>
         <AppBar position="static">
-          <Toolbar>
+          <Toolbar variant="dense">
+            <Link
+              to="/home"
+              style={{
+                textDecoration: "none",
+                color: "white",
+                marginLeft: "0.5em",
+              }}
+            >
+              <Typography className={classes.title} variant="h6" noWrap>
+                MovieDB
+              </Typography>
+            </Link>
+            <Link
+              to="/home"
+              style={{
+                textDecoration: "none",
+                color: "white",
+                marginLeft: "3em",
+              }}
+            >
+              <Typography variant="h6" color="inherit">
+                Home
+              </Typography>{" "}
+            </Link>
+            <Link
+              to="/search"
+              style={{
+                textDecoration: "none",
+                color: "white",
+                marginLeft: "1em",
+              }}
+            >
+              <Typography variant="h6" color="inherit">
+                Search
+              </Typography>{" "}
+            </Link>
+            <Link
+              to="/favorites"
+              style={{
+                textDecoration: "none",
+                color: "white",
+                marginLeft: "1em",
+              }}
+            >
+              <Typography variant="h6" color="inherit">
+                Favorites
+              </Typography>{" "}
+            </Link>
+          </Toolbar>
+          {/* <Toolbar>
             <Typography className={classes.title} variant="h6" noWrap>
               MovieDB
             </Typography>
-
-            <div className={classes.search}>
+            <Link to="/home" className={classes.search}>
               <div className={classes.menuItems}>Home</div>
-            </div>
+            </Link>
             <div className={classes.search}>
               <div className={classes.menuItems}>Favorite</div>
             </div>
@@ -111,7 +161,7 @@ const MobileNav = (props) => {
                 inputProps={{ "aria-label": "search" }}
               />
             </div>
-          </Toolbar>
+          </Toolbar> */}
         </AppBar>
       </div>
     </>

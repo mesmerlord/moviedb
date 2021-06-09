@@ -1,13 +1,13 @@
 import { call, put } from "redux-saga/effects";
-import { setMovies, addMovies } from "../../movies/movies";
+import { addMovies } from "../../movies/movies";
 import { requestGetMovies } from "../requests/movies";
 
-export function* handleGetMovies(action) {
+export function* handleChangePage(action) {
   try {
     console.log(action.payload);
     const response = yield call(requestGetMovies, action.payload);
 
-    yield put(setMovies(response));
+    yield put(addMovies(response));
   } catch (err) {
     console.log(err);
   }
