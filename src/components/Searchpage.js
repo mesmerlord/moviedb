@@ -5,6 +5,11 @@ import Paper from "@material-ui/core/Paper";
 import InputBase from "@material-ui/core/InputBase";
 import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
+import Moviecardlist from "./Moviecardlist";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getMovies, setMovies, setSearchQuery } from "../redux/movies/movies";
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles((theme) => ({
   parent: {
@@ -27,6 +32,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Searchpage = () => {
+  const movies = useSelector((state) => state.movies.movies);
+
+  const dispatch = useDispatch();
+
+  const setQuery = (e) => {
+    console.log(e.target.value);
+    dispatch(getMovies(`${e.target.value}`));
+  };
+
+  useEffect(() => {
+    console.log(movies);
+  }, [movies]);
+
   const classes = useStyles();
   const returnSearch = (e) => {
     e.preventDefault();
@@ -36,11 +54,7 @@ const Searchpage = () => {
     <>
       <Navbar>
         <div class={classes.parent}>
-          <Paper
-            component="form"
-            className={classes.root}
-            onSubmit={returnSearch}
-          >
+          <Paper component="form" className={classes.root} onChange={setQuery}>
             <InputBase
               className={classes.input}
               placeholder="Search Movies"
@@ -51,6 +65,9 @@ const Searchpage = () => {
             </IconButton>
           </Paper>
         </div>
+        <Grid container>
+          {movies ? <Moviecardlist movielist={movies} /> : ""}
+        </Grid>
       </Navbar>
     </>
   );

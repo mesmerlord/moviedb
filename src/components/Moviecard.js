@@ -4,20 +4,14 @@ import clsx from "clsx";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-import Collapse from "@material-ui/core/Collapse";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-// import ShareIcon from "@material-ui/icons/Share";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
     margin: "1em",
+    height: "20em",
   },
   media: {
     height: 0,
@@ -38,53 +32,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RecipeReviewCard({
-  title,
-  description,
-  imagelink,
-  moretext,
-}) {
+export default function RecipeReviewCard({ title, date, imagelink, id }) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
   return (
     <Card className={classes.root}>
-      <CardHeader title={title} subheader="September 14, 2016" />
-      <CardMedia
-        className={classes.media}
-        image="/static/images/cards/paella.jpg"
-        title={title}
-      />
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          Sample text
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
+      <Link
+        to={`/movies/${id}`}
+        style={{ textDecoration: "none", color: "black" }}
+      >
+        <CardHeader title={title} subheader={date}></CardHeader>
 
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>Sample More Text</Typography>
-        </CardContent>
-      </Collapse>
+        <CardMedia className={classes.media} image={imagelink} title={title} />
+      </Link>
     </Card>
   );
 }
